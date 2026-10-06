@@ -1,5 +1,7 @@
 import streamlit as st
 import pickle
+import gzip
+
 import pandas as pd
 import requests
 
@@ -24,7 +26,8 @@ movies = pd.DataFrame(movies_dict)
 # LOAD SIMILARITY MATRIX
 # =========================================================
 
-with open("similarity.pkl", "rb") as file:
+
+with gzip.open("similarity.pkl.gz", "rb") as file:
     similarity = pickle.load(file)
 
 
@@ -194,3 +197,8 @@ import pickle
 
 with gzip.open("similarity.pkl.gz", "rb") as f:
     similarity = pickle.load(f)
+
+
+import os
+
+TMDB_API_KEY = os.getenv("b3055fb71521ac512aba662840dcb452")
